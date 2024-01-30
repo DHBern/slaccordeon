@@ -43,11 +43,12 @@
       java -jar {$path-to-saxon}/saxon-he.jar \
       -s:slaccordeon.xsl \
       -xsl:slaccordeon.xsl \
-      input={$input-path}/C012GBADPD1.json \
+      input={$input-path}/{C012GBADPD1}.json \
       users.json={$input-path}/users.json \
       channels.json={$input-path}/channels.json
       
-      (any {$expression} needs to be replaced by absolute or relative paths)
+      (any {$expression} needs to be replaced by absolute or relative paths,
+       any {expression} needs to be replaced by the channel ID)
     
     How to import?
     ==============
@@ -67,7 +68,7 @@
     
   -->
   
-  <xsl:param name="input" as="xs:string" select="'path-to-input-directory/CTWB47JQ0.json'"/>
+  <xsl:param name="input" as="xs:string" select="'path-to-input-directory/input.json'"/>
   <xsl:param name="users.json" as="xs:string" select="'path-to-input-directory/users.json'"/>
   <xsl:param name="channels.json" as="xs:string" select="'path-to-input-directory/channels.json'"/>
   
@@ -103,7 +104,7 @@
         <xsl:variable name="inject" as="map(*)+" select="
           map{'source_team':.?team,'user_team':current()?team},
           map{'user_profile':$user_profile}"/>
-          <xsl:sequence select="array { current-group() ! map:merge((.,$inject)) }"/>
+        <xsl:sequence select="array { current-group() ! map:merge((.,$inject)) }"/>
       </xsl:result-document>
     </xsl:for-each-group>
   </xsl:template>

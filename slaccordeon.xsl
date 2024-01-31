@@ -23,7 +23,7 @@
     How does it work?
     =================
     
-    - The order of the maps within the array is reverted.
+    - The order of the maps within the array is reversed.
     - User profile information is added to each message.
     - The messages are grouped by day and stored in daily files.
     - Entries without "user" info are skipped.
